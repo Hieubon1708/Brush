@@ -36,26 +36,20 @@ public class Tool : MonoBehaviour
             boxes[i] = b;
         }
 
-        for (int i = 0; i < boxes.Length; i++)
+        /*for (int i = 0; i < boxes.Length; i++)
         {
             for (int j = 0; j < boxes[i].Length; j++)
             {
                 Debug.Log(boxes[i][j].boxColor);
             }
-        }
+        }*/
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.A))
         {
-            for (int i = 0; i < boxes.Length; i++)
-            {
-                for (int j = 0; j < boxes[i].Length; j++)
-                {
-                    boxes[i][j].isChecked = false;
-                }
-            }
+            
         }
     }
 
@@ -78,12 +72,14 @@ public class Tool : MonoBehaviour
         row = -1; col = -1;
     }
 
-    public void CheckBoxAround(Box box)
+    public void CheckBoxAround(Box box, GameController.BoxColor boxColor)
     {
         int row;
         int col;
 
         GetRowCol(box, out row, out col);
+        /*Debug.Log(row);
+        Debug.Log(col);*/
 
         if (row == -1 || col == -1)
         {
@@ -93,24 +89,24 @@ public class Tool : MonoBehaviour
         }
 
         //left
-        if (col - 1 > 0)
+        if (col - 1 >= 0)
         {
-            boxes[row][col - 1].Check();
+            boxes[row][col - 1].Check(boxColor);
         }
         //right
         if (col + 1 < this.col)
         {
-            boxes[row][col + 1].Check();
+            boxes[row][col + 1].Check(boxColor);
         }
         //top
-        if (row - 1 > 0)
+        if (row - 1 >= 0)
         {
-            boxes[row - 1][col].Check();
+            boxes[row - 1][col].Check(boxColor);
         }
         //bottom
         if (row + 1 < this.row)
         {
-            boxes[row + 1][col].Check();
+            boxes[row + 1][col].Check(boxColor);
         }
     }
 }

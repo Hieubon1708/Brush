@@ -26,19 +26,20 @@ public class Box : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        boxColor = Tool.instance.targetColor;
-
-        Check();
+        Check(boxColor);
     }
 
-    public void Check()
+    public void Check(GameController.BoxColor boxColor)
     {
-        if (this.boxColor != Tool.instance.targetColor || isChecked) return;
+        if (this.boxColor != boxColor || isChecked) return;
+        Debug.Log(name);
 
         isChecked = true;
 
         image.color = GameController.instance.GetColor(Tool.instance.targetColor);
 
-        Tool.instance.CheckBoxAround(this);
+        Tool.instance.CheckBoxAround(this, boxColor);
+
+        boxColor = Tool.instance.targetColor;
     }
 }
