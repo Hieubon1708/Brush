@@ -8,7 +8,7 @@ public class GameController : MonoBehaviour
 
     public enum BoxColor
     {
-        Green, Blue, Red, Yellow
+        Green, Blue, Red, Yellow, Gray, None
     }
 
     private void Awake()
@@ -24,8 +24,9 @@ public class GameController : MonoBehaviour
             case BoxColor.Blue: return Color.blue;
             case BoxColor.Red: return Color.red;
             case BoxColor.Yellow: return Color.yellow;
+            case BoxColor.Gray: return Color.gray;
         }
 
-        return Color.white;
+        return Color.black;
     }
 }

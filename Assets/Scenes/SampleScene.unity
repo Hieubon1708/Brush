@@ -211,6 +211,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boxColor: 3
+  isChecked: 0
 --- !u!1 &477851809
 GameObject:
   m_ObjectHideFlags: 0
@@ -300,6 +301,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boxColor: 0
+  isChecked: 0
 --- !u!1 &504179867
 GameObject:
   m_ObjectHideFlags: 0
@@ -389,6 +391,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boxColor: 0
+  isChecked: 0
 --- !u!1 &527802572
 GameObject:
   m_ObjectHideFlags: 0
@@ -478,6 +481,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boxColor: 0
+  isChecked: 0
 --- !u!1 &558628967
 GameObject:
   m_ObjectHideFlags: 0
@@ -567,6 +571,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boxColor: 1
+  isChecked: 0
 --- !u!1 &594605750
 GameObject:
   m_ObjectHideFlags: 0
@@ -656,6 +661,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boxColor: 3
+  isChecked: 0
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -839,6 +845,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boxColor: 3
+  isChecked: 0
 --- !u!1 &850393249
 GameObject:
   m_ObjectHideFlags: 0
@@ -928,6 +935,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boxColor: 3
+  isChecked: 0
 --- !u!1 &877173335
 GameObject:
   m_ObjectHideFlags: 0
@@ -1017,6 +1025,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boxColor: 3
+  isChecked: 0
 --- !u!1 &895210406
 GameObject:
   m_ObjectHideFlags: 0
@@ -1106,6 +1115,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boxColor: 3
+  isChecked: 0
 --- !u!1 &952114208
 GameObject:
   m_ObjectHideFlags: 0
@@ -1331,6 +1341,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boxColor: 0
+  isChecked: 0
 --- !u!1 &991175774
 GameObject:
   m_ObjectHideFlags: 0
@@ -1420,6 +1431,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boxColor: 3
+  isChecked: 0
 --- !u!1 &1111840385
 GameObject:
   m_ObjectHideFlags: 0
@@ -1509,6 +1521,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boxColor: 0
+  isChecked: 0
 --- !u!1 &1373436287
 GameObject:
   m_ObjectHideFlags: 0
@@ -1598,6 +1611,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boxColor: 0
+  isChecked: 0
 --- !u!1 &1382575846
 GameObject:
   m_ObjectHideFlags: 0
@@ -1687,6 +1701,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boxColor: 0
+  isChecked: 0
 --- !u!1 &1625898000
 GameObject:
   m_ObjectHideFlags: 0
@@ -1776,6 +1791,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boxColor: 0
+  isChecked: 0
 --- !u!1 &1739556003
 GameObject:
   m_ObjectHideFlags: 0
@@ -2035,6 +2051,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd5d6e1a8c1bccf47aad655f7fff4604, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetColor: 0
   row: 4
   col: 4
 --- !u!1660057539 &9223372036854775807

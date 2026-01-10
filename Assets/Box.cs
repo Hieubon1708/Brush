@@ -7,7 +7,7 @@ using static GameController;
 
 public class Box : MonoBehaviour, IPointerClickHandler
 {
-    public GameController.BoxColor boxColor;
+    public BoxColor boxColor;
 
     Image image;
 
@@ -26,13 +26,14 @@ public class Box : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        Tool.instance.ResetChecked();
+
         Check(boxColor);
     }
 
-    public void Check(GameController.BoxColor boxColor)
+    public void Check(BoxColor boxColor)
     {
-        if (this.boxColor != boxColor || isChecked) return;
-        Debug.Log(name);
+        if (this.boxColor != boxColor || isChecked || this.boxColor == BoxColor.None) return;
 
         isChecked = true;
 
@@ -40,6 +41,21 @@ public class Box : MonoBehaviour, IPointerClickHandler
 
         Tool.instance.CheckBoxAround(this, boxColor);
 
-        boxColor = Tool.instance.targetColor;
+        this.boxColor = Tool.instance.targetColor;
+    }
+
+    public void ToolCheck(BoxColor boxColor, ref int count)
+    {
+        if (this.boxColor != boxColor || isChecked || this.boxColor == BoxColor.None) return;
+
+        count++;
+
+        isChecked = true;
+
+        image.color = GameController.instance.GetColor(Tool.instance.targetColor);
+
+        Tool.instance.CheckBoxAround(this, boxColor);
+
+        this.boxColor = Tool.instance.targetColor;
     }
 }

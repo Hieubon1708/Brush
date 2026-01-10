@@ -7,6 +7,7 @@ public class Tool : MonoBehaviour
     public static Tool instance;
 
     public GameController.BoxColor targetColor;
+    public GameController.BoxColor startColor;
 
     public int row;
     public int col;
@@ -45,11 +46,79 @@ public class Tool : MonoBehaviour
         }*/
     }
 
+    bool isFirstColor;
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.A))
         {
-            
+            ResetChecked();
+
+            if (!isFirstColor)
+            {
+                isFirstColor = true;
+
+                Vector2Int max = Vector2Int.zero;
+
+                int maxCount = 0;
+
+                for (int i = 0; i < boxes.Length; i++)
+                {
+                    for (int j = 0; j < boxes[i].Length; j++)
+                    {
+                        if (boxes[i][j].boxColor == startColor)
+                        {
+                            int count = 0;
+
+                            ToolCheckBoxAround(boxes[i][j], boxes[i][j].boxColor, ref count);
+                        }
+                    }
+                }
+            }
+            else
+            {
+
+            }
+        }
+    }
+
+    public void ToolCheckBoxAround(Box box, GameController.BoxColor boxColor, ref int count)
+    {
+        int row;
+        int col;
+
+        GetRowCol(box, out row, out col);
+
+        //left
+        if (col - 1 >= 0)
+        {
+            boxes[row][col - 1].ToolCheck(boxColor, ref count);
+        }
+        //right
+        if (col + 1 < this.col)
+        {
+            boxes[row][col + 1].ToolCheck(boxColor, ref count);
+        }
+        //top
+        if (row - 1 >= 0)
+        {
+            boxes[row - 1][col].ToolCheck(boxColor, ref count);
+        }
+        //bottom
+        if (row + 1 < this.row)
+        {
+            boxes[row + 1][col].ToolCheck(boxColor, ref count);
+        }
+    }
+
+    public void ResetChecked()
+    {
+        for (int i = 0; i < boxes.Length; i++)
+        {
+            for (int j = 0; j < boxes[i].Length; j++)
+            {
+                boxes[i][j].isChecked = false;
+            }
         }
     }
 
