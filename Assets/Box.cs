@@ -44,18 +44,17 @@ public class Box : MonoBehaviour, IPointerClickHandler
         this.boxColor = Tool.instance.targetColor;
     }
 
-    public void ToolCheck(BoxColor boxColor, ref int count)
+    public void ToolCheck(BoxColor originColor, BoxColor boxColor, ref int count)
     {
-        if (this.boxColor != boxColor || isChecked || this.boxColor == BoxColor.None) return;
+        if (isChecked || this.boxColor == BoxColor.None) return;
 
-        count++;
+        if (originColor == this.boxColor || this.boxColor == boxColor)
+        {
+            count++;
 
-        isChecked = true;
+            isChecked = true;
 
-        image.color = GameController.instance.GetColor(Tool.instance.targetColor);
-
-        Tool.instance.CheckBoxAround(this, boxColor);
-
-        this.boxColor = Tool.instance.targetColor;
+            Tool.instance.ToolCheckBoxAround(this, this.boxColor, boxColor, ref count);
+        }
     }
 }

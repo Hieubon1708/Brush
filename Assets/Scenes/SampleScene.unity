@@ -2051,7 +2051,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd5d6e1a8c1bccf47aad655f7fff4604, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetColor: 0
+  targetColor: 3
+  startColor: 1
   row: 4
   col: 4
 --- !u!1660057539 &9223372036854775807

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -52,15 +53,15 @@ public class Tool : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.A))
         {
-            ResetChecked();
-
             if (!isFirstColor)
             {
                 isFirstColor = true;
 
-                Vector2Int max = Vector2Int.zero;
+                GameController.BoxColor maxColor = GameController.BoxColor.None;
 
-                int maxCount = 0;
+                string name = string.Empty;
+
+                Box box = null;
 
                 for (int i = 0; i < boxes.Length; i++)
                 {
@@ -68,21 +69,101 @@ public class Tool : MonoBehaviour
                     {
                         if (boxes[i][j].boxColor == startColor)
                         {
-                            int count = 0;
+                            int maxCount = 0;
 
-                            ToolCheckBoxAround(boxes[i][j], boxes[i][j].boxColor, ref count);
+                            GameController.BoxColor[] bc = ((GameController.BoxColor[])Enum.GetValues(typeof(GameController.BoxColor)));
+
+                            for (int k = 0; k < bc.Length; k++)
+                            {
+                                int count = 0;
+
+                                ResetChecked();
+
+                                if (bc[k] != GameController.BoxColor.None && bc[k] != boxes[i][j].boxColor)
+                                {
+                                    boxes[i][j].ToolCheck(boxes[i][j].boxColor, bc[k], ref count);
+                                    //Debug.LogError("Color = " + bc[k] + " Count = " + count);
+                                }
+
+                                if (count > maxCount)
+                                {
+                                    maxCount = count;
+                                    maxColor = bc[k];
+                                    name = boxes[i][j].name;
+                                    box = boxes[i][j];
+                                }
+                            }
+
+                            Debug.Log("Max = " + maxColor.ToString() + " " + name + " Count = " + maxCount);
                         }
                     }
                 }
+
+                ResetChecked();
+
+                targetColor = maxColor;
+
+                box.Check(box.boxColor);
             }
             else
             {
+                GameController.BoxColor maxColor = GameController.BoxColor.None;
+                GameController.BoxColor maxFinalColor = GameController.BoxColor.None;
 
+                int maxFinalCount = 0;
+
+                Box box = null;
+                Box finalbox = null;
+
+                for (int i = 0; i < boxes.Length; i++)
+                {
+                    for (int j = 0; j < boxes[i].Length; j++)
+                    {
+                        int maxCount = 0;
+
+                        GameController.BoxColor[] bc = ((GameController.BoxColor[])Enum.GetValues(typeof(GameController.BoxColor)));
+
+                        for (int k = 0; k < bc.Length; k++)
+                        {
+                            int count = 0;
+
+                            ResetChecked();
+
+                            if (bc[k] != GameController.BoxColor.None && bc[k] != boxes[i][j].boxColor)
+                            {
+                                boxes[i][j].ToolCheck(boxes[i][j].boxColor, bc[k], ref count);
+                                //Debug.LogError("Color = " + bc[k] + " Count = " + count);
+                            }
+
+                            if (count > maxCount)
+                            {
+                                maxCount = count;
+                                maxColor = bc[k];
+                                box = boxes[i][j];
+                            }
+                        }
+
+                        if (maxCount > maxFinalCount)
+                        {
+                            maxFinalCount = maxCount;
+                            maxFinalColor = maxColor;
+                            finalbox = box;
+                        }
+                    }
+                }
+
+                Debug.Log("Max = " + maxFinalColor.ToString() + " " + finalbox.name + " Count = " + maxFinalCount);
+
+                ResetChecked();
+
+                targetColor = maxFinalColor;
+
+                finalbox.Check(finalbox.boxColor);
             }
         }
     }
 
-    public void ToolCheckBoxAround(Box box, GameController.BoxColor boxColor, ref int count)
+    public void ToolCheckBoxAround(Box box, GameController.BoxColor originColor, GameController.BoxColor boxColor, ref int count)
     {
         int row;
         int col;
@@ -92,22 +173,22 @@ public class Tool : MonoBehaviour
         //left
         if (col - 1 >= 0)
         {
-            boxes[row][col - 1].ToolCheck(boxColor, ref count);
+            boxes[row][col - 1].ToolCheck(originColor, boxColor, ref count);
         }
         //right
         if (col + 1 < this.col)
         {
-            boxes[row][col + 1].ToolCheck(boxColor, ref count);
+            boxes[row][col + 1].ToolCheck(originColor, boxColor, ref count);
         }
         //top
         if (row - 1 >= 0)
         {
-            boxes[row - 1][col].ToolCheck(boxColor, ref count);
+            boxes[row - 1][col].ToolCheck(originColor, boxColor, ref count);
         }
         //bottom
         if (row + 1 < this.row)
         {
-            boxes[row + 1][col].ToolCheck(boxColor, ref count);
+            boxes[row + 1][col].ToolCheck(originColor, boxColor, ref count);
         }
     }
 
